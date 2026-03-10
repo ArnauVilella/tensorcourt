@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import logoImage from "../assets/dc2b5e7b8fdf8e9caeeff8fe8a713087a95d6e3a.png";
 import arnauPhoto from '../assets/e4f959eb9c7282fb18efbf5a5472f0ee4737b846.jpg';
+import kianoushPhoto from '../assets/kianoush.png';
 
 const About = () => {
   // Public Header Component
@@ -156,57 +157,102 @@ const About = () => {
           </div>
         </div>
 
-        {/* Founder Section */}
+        {/* Team Section */}
         <div className="mb-16">
           <h2 className="text-3xl font-semibold text-center text-gray-900 mb-12">
-            Meet Our Founder
+            Meet Our Team
           </h2>
-          <Card className="max-w-4xl mx-auto">
-            <CardContent className="p-8">
-              <div className="flex flex-col md:flex-row items-center gap-8">
-                <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-lg">
-                  <img 
-                    src={arnauPhoto}
-                    alt="Arnau Vilella, Founder & CEO"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="flex-1 text-center md:text-left">
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-2">
-                    Arnau Vilella
-                  </h3>
-                  <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-4">
-                    <Badge variant="outline">
-                      Founder & CEO
-                    </Badge>
-                    <Badge variant="outline">PhD Student</Badge>
-                    <Badge variant="outline">
-                      AI Researcher
-                    </Badge>
+          <div className="space-y-8 max-w-4xl mx-auto">
+            <Card>
+              <CardContent className="p-8">
+                <div className="flex flex-col md:flex-row items-center gap-8">
+                  <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-lg flex-shrink-0">
+                    <img 
+                      src={arnauPhoto}
+                      alt="Arnau Vilella, Founder & CEO"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <p className="text-gray-600 leading-relaxed mb-4">
-                    Arnau is a PhD Student at the Hong Kong
-                    University of Science and Technology (HKUST)
-                    with a specialization in AI and
-                    optimization. His research focuses on the
-                    intersection of optimization and machine
-                    learning, with application in multiple
-                    fields like finance or sports analytics.
-                  </p>
-                  <p className="text-gray-600 leading-relaxed">
-                    With a passion for both tennis and
-                    artificial intelligence, Arnau founded
-                    TensorCourt to bridge the gap between
-                    professional sports technology and amateur
-                    athletics. His vision is to make highlights
-                    and advanced sports analysis accessible to
-                    every tennis player, regardless of their
-                    skill level or budget.
-                  </p>
+                  <div className="flex-1 text-center md:text-left">
+                    <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+                      Arnau Vilella
+                    </h3>
+                    <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-4">
+                      <Badge variant="outline">
+                        Founder & CEO
+                      </Badge>
+                      <Badge variant="outline">PhD Student</Badge>
+                      <Badge variant="outline">
+                        AI Researcher
+                      </Badge>
+                    </div>
+                    <p className="text-gray-600 leading-relaxed mb-4">
+                      Arnau is a PhD Student at the Hong Kong
+                      University of Science and Technology (HKUST)
+                      with a specialization in AI and
+                      optimization. His research focuses on the
+                      intersection of optimization and machine
+                      learning, with application in multiple
+                      fields like finance or sports analytics.
+                    </p>
+                    <p className="text-gray-600 leading-relaxed">
+                      With a passion for both tennis and
+                      artificial intelligence, Arnau founded
+                      TensorCourt to bridge the gap between
+                      professional sports technology and amateur
+                      athletics. His vision is to make highlights
+                      and advanced sports analysis accessible to
+                      every tennis player, regardless of their
+                      skill level or budget.
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-8">
+                <div className="flex flex-col md:flex-row items-center gap-8">
+                  <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-lg flex-shrink-0">
+                    <img 
+                      src={kianoushPhoto}
+                      alt="Kianoush Arshi, Infrastructure Director"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex-1 text-center md:text-left">
+                    <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+                      Kianoush Arshi
+                    </h3>
+                    <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-4">
+                      <Badge variant="outline">
+                        Infrastructure Director
+                      </Badge>
+                      <Badge variant="outline">MPhil Student</Badge>
+                      <Badge variant="outline">
+                        Computer Science
+                      </Badge>
+                    </div>
+                    <p className="text-gray-600 leading-relaxed mb-4">
+                      Kianoush is an MPhil student at the Hong Kong
+                      University of Science and Technology (HKUST)
+                      with a specialization in computer science.
+                      His expertise spans systems architecture,
+                      security, and scalable infrastructure design.
+                    </p>
+                    <p className="text-gray-600 leading-relaxed">
+                      With a deep passion for cryptography and
+                      sports, Kianoush leads TensorCourt's
+                      infrastructure efforts, ensuring our
+                      camera systems and data pipelines are
+                      robust, secure, and performant across all
+                      partner clubs.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
         {/* Values Section */}
