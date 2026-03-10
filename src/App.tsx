@@ -1,41 +1,177 @@
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, HashRouter as Router, Navigate, useNavigate } from 'react-router-dom';
+import LandingPage from './components/LandingPage';
+import AuthPage from './components/AuthPage';
+import Dashboard from './components/Dashboard';
+import ClubsDirectory from './components/ClubsDirectory';
+import StartGame from './components/StartGame';
+import MatchDetails from './components/MatchDetails';
+import AllMatches from './components/AllMatches';
+import Profile from './components/Profile';
+import Settings from './components/Settings';
+import ManagePlan from './components/ManagePlan';
+import FullStats from './components/FullStats';
+import Pricing from './components/Pricing';
+import FAQ from './components/FAQ';
+import About from './components/About';
+import Contact from './components/Contact';
+import PrivacyPolicy from './components/PrivacyPolicy';
+
+import adminProfilePic from './assets/e4f959eb9c7282fb18efbf5a5472f0ee4737b846.jpg';
+
+const getInitialUser = () => {
+  try {
+    const savedUser = localStorage.getItem('tennisUser');
+    if (savedUser) {
+      return JSON.parse(savedUser);
+    }
+  } catch (error) {
+    console.error("Failed to parse user from localStorage", error);
+    localStorage.removeItem('tennisUser');
+  }
+  return null;
+};
+
+const AppContent = () => {
+  const [user, setUser] = useState(getInitialUser);
+  const navigate = useNavigate();
+
+  const handleLogin = (userData) => {
+    if (userData.username === 'admin') {
+      userData.profilePicture = adminProfilePic;
+    }
+    setUser(userData);
+    localStorage.setItem('tennisUser', JSON.stringify(userData));
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.removeItem('tennisUser');
+    navigate('/', { replace: true });
+  };
+
+  const handlePlanChange = (plan) => {
+    const updatedUser = { ...user, plan };
+    setUser(updatedUser);
+    localStorage.setItem('tennisUser', JSON.stringify(updatedUser));
+  };
+
+  const isAuthenticated = user !== null;
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Routes>
+        <Route 
+          path="/"
+          element={
+            isAuthenticated ? 
+            <Navigate to="/dashboard" replace /> : 
+            <LandingPage />
+          } 
+        />
+        <Route 
+          path="/auth" 
+          element={<AuthPage onLogin={handleLogin} redirectTo="/dashboard" />}
+        />
+        <Route 
+          path="/dashboard" 
+          element={
+            isAuthenticated ? 
+            <Dashboard user={user} onLogout={handleLogout} /> : 
+            <Navigate to="/" replace />
+          } 
+        />
+        {/* Clubs route - publicly accessible */}
+        <Route 
+          path="/clubs" 
+          element={
+            <ClubsDirectory 
+              user={isAuthenticated ? user : null} 
+              onLogout={isAuthenticated ? handleLogout : null}
+              isAuthenticated={isAuthenticated}
+            />
+          } 
+        />
+        <Route 
+          path="/start-game" 
+          element={
+            isAuthenticated ? 
+            <StartGame user={user} onLogout={handleLogout} /> : 
+            <Navigate to="/" replace />
+          } 
+        />
+        <Route 
+          path="/match/:id" 
+          element={
+            isAuthenticated ? 
+            <MatchDetails user={user} onLogout={handleLogout} /> : 
+            <Navigate to="/" replace />
+          } 
+        />
+        <Route 
+          path="/matches" 
+          element={
+            isAuthenticated ? 
+            <AllMatches user={user} onLogout={handleLogout} /> : 
+            <Navigate to="/" replace />
+          } 
+        />
+        <Route 
+          path="/profile" 
+          element={
+            isAuthenticated ? 
+            <Profile user={user} onLogout={handleLogout} /> : 
+            <Navigate to="/" replace />
+          } 
+        />
+        <Route 
+          path="/settings" 
+          element={
+            isAuthenticated ? 
+            <Settings user={user} onLogout={handleLogout} /> : 
+            <Navigate to="/" replace />
+          } 
+        />
+        <Route 
+          path="/manage-plan" 
+          element={
+            isAuthenticated ? 
+            <ManagePlan user={user} onLogout={handleLogout} onPlanChange={handlePlanChange} /> : 
+            <Navigate to="/" replace />
+          } 
+        />
+        <Route 
+          path="/full-stats" 
+          element={
+            isAuthenticated ? 
+            <FullStats user={user} onLogout={handleLogout} /> : 
+            <Navigate to="/" replace />
+          } 
+        />
+        {/* Public pages - accessible to everyone */}
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        {/* Catch-all route for any unmatched paths */}
+        <Route 
+          path="*" 
+          element={
+            <Navigate to={isAuthenticated ? "/dashboard" : "/"} replace />
+          } 
+        />
+      </Routes>
+    </div>
+  );
+};
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4">
-      <div className="max-w-4xl mx-auto">
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-6">Figma Make Local Runner</h1>
-          
-          <p className="text-lg text-gray-700 mb-6">
-            A skeleton project designed to run code downloaded from Figma Make locally, so you can easily modify the generated code with your favorite tools.
-          </p>
-
-          <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6">
-            <p className="text-blue-800">
-              This project comes with several pre-installed packages that Figma-generated code may require. If you encounter errors about missing dependencies, you may need to install additional packages as needed.
-            </p>
-          </div>
-
-
-          <h2 className="text-2xl font-semibold text-gray-900 mb-4">🛠️ Setup</h2>
-          
-
-          <ol className="list-decimal list-inside text-gray-700 mb-4 space-y-2">
-            <li>Download your code from Figma Make</li>
-            <li>Decompress the downloaded files</li>
-            <li>Copy all the files and folders into the <code className="bg-gray-200 px-1 rounded">src</code> directory of this project</li>
-          </ol>
-          
-          <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
-            <p className="text-yellow-800 font-medium">
-              <strong>Important:</strong> Make sure to replace or merge with the existing files in the <code className="bg-yellow-200 px-1 rounded">src</code> folder. The current <code className="bg-yellow-200 px-1 rounded">src</code> folder contains a demo application that you should replace with your Figma Make code.
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  )
+    <Router>
+      <AppContent />
+    </Router>
+  );
 }
 
-export default App
+export default App;

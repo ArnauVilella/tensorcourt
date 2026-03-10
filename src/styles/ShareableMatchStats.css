@@ -1,0 +1,73 @@
+.shareable-match-card {
+  width: 550px;
+  height: 580px;
+  padding: 24px;
+  background-color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  color: #333;
+  position: relative;
+}
+
+.shareable-match-header {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: #1a202c;
+}
+
+.shareable-match-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.shareable-match-card-item {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0 8px 12px 8px;
+  background-color: #f7fafc;
+  text-align: center;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.shareable-match-card-title {
+  font-size: 10px;
+  font-weight: 500;
+  margin-bottom: 2px;
+  color: #718096;
+}
+
+.shareable-match-card-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1a202c;
+}
+
+.shareable-match-card-value.win {
+  color: #10b981;
+}
+
+.shareable-match-card-value.loss {
+  color: #ef4444;
+}
+
+.shareable-match-sub-value {
+  font-size: 14px;
+  color: #718096;
+}
+
+.shareable-match-section-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 18px;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 6px;
+  color: #2d3748;
+}
+
+

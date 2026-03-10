@@ -28,7 +28,7 @@ function removeVersionSpecifiers() {
           const matchIndex = match.index!;
           const [matchStr, quote, packageName, newline] = match;
           transformedCode =
-            transformedCode.slice(0, matchIndex) +
+            transformedCode.slice(0, matchIndex) + 
             `${quote}${packageName}${quote};${newline}` +
             transformedCode.slice(matchIndex + matchStr.length);
         }
@@ -47,5 +47,21 @@ function removeVersionSpecifiers() {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss(), removeVersionSpecifiers()],
+  base: '/tensorcourt/',
+  build: {
+    outDir: 'dist',
+  },
+  server: {
+    host: true,
+    watch: {
+      ignored: ['**/server/**']
+    },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3002',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  }
 })
-

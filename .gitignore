@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Server (not used on GitHub Pages)
+database.db
+
+# Large unused video
+src/assets/full_video.mp4
